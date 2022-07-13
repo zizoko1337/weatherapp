@@ -1,4 +1,7 @@
 <template>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@100&display=swap" rel="stylesheet"> 
   <img id="logo" alt="Vue logo" src="./assets/logo.png" />
   <BaseCard>
     <SearchBar></SearchBar>
@@ -33,7 +36,7 @@ export default {
   margin-top: 60px;
 }
 body {
-  background: rgb(0, 217, 255);
+  background: rgb(51, 0, 106);
 }
 
 @media only screen and (max-width: 650px) {
