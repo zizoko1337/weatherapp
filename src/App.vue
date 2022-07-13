@@ -2,7 +2,7 @@
   <img id="logo" alt="Vue logo" src="./assets/logo.png" />
   <BaseCard>
     <SearchBar></SearchBar>
-    <HelloWorld msg="Welcome to weather app" location="warsaw" />
+    <HelloWorld msg="Warsaw" location="warsaw" />
   </BaseCard>
 </template>
 

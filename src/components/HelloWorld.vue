@@ -1,12 +1,13 @@
 <template>
   <div class="hello">
-    <base-card><h1>{{ msg }}</h1></base-card>
+    <base-card><h1>Weather in {{ msg }}</h1></base-card>
   </div>
   <div>
-    <h2>{{info?.weather[0]?.description}}</h2>
+    <h2>{{description}}</h2>
     <ul>
-      <li>temperature: {{info?.main?.temp}}</li>
-      <li>wind</li>
+      <li>Temp: {{temperature}}°</li>
+      <li>Wind: {{wind}}km/h</li>
+      <img :src="require('../assets/icons/' + icon + '.png')" alt="">{{icon}}
     </ul>
   </div>
 </template>
@@ -26,6 +27,11 @@ export default {
   data() {
     return {
       info: null,
+      temperature: null,
+      description: null,
+      wind: null,
+      // cant be null, some async problem
+      icon: '01d',
     };
   },
 
@@ -36,6 +42,10 @@ export default {
       )
       .then((response) => {
         this.info = response.data;
+        this.temperature = response.data.main.temp;
+        this.description = response.data.weather[0].description;
+        this.wind = response.data.wind.speed;
+        this.icon = response.data.weather[0].icon;
       });
   },
 };
@@ -51,7 +61,6 @@ ul {
   padding: 0;
 }
 li {
-  display: inline-block;
   margin: 0 10px;
 }
 a {
@@ -59,5 +68,8 @@ a {
 }
 h2 {
   text-transform: capitalize;
+}
+img{
+  max-width: 100px;
 }
 </style>
