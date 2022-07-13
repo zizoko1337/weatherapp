@@ -1,17 +1,26 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <img id="logo" alt="Vue logo" src="./assets/logo.png" />
+  <BaseCard>
+    <SearchBar></SearchBar>
+    <HelloWorld msg="Welcome to weather app" location="warsaw" />
+  </BaseCard>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
+
+import HelloWorld from './components/HelloWorld.vue';
+import BaseCard from '../src/components/ui/BaseCard.vue';
+import SearchBar from './components/SearchBar.vue';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
-}
+    HelloWorld,
+    BaseCard,
+    SearchBar,
+  },  
+};
 </script>
 
 <style>
@@ -22,5 +31,14 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+body {
+  background: rgb(0, 217, 255);
+}
+
+@media only screen and (max-width: 650px) {
+    #logo {
+      max-width: 80%;
+    }
 }
 </style>
