@@ -107,10 +107,6 @@ img {
     font-family: 'Prompt', sans-serif;
   }
 
-  img {
-    /* max-width: 400px; */
-  }
-
   .container {
     display: flex;
     flex-direction: column;
