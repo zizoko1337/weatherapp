@@ -21,7 +21,7 @@ Thats why this component will be imported in main.js, so i can access it anywher
   padding-bottom: 50px;
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1390px) {
     .card {
   max-width: 80%;
 }

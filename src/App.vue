@@ -68,6 +68,8 @@ export default {
         this.icon = response.data.weather[0].icon;
         this.dayNight = this.icon.at(-1) == 'd' ? 'day' : 'night';
         this.apiFetched = true;
+      }).catch((error) => {
+        console.log(error.message);
       });
     }
   },
@@ -79,6 +81,11 @@ export default {
 body {
   margin: 0;
   background-color: #9955ffff;
+  height: 100vh;
+}
+
+#main {
+  height: 100%;
 }
 
 #app {
@@ -87,6 +94,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  width: 100%;
+  height: 100%;
 }
 .night {
   background-image: url('../src/assets/NightHorizontal.png');

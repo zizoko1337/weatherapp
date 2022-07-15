@@ -32,7 +32,7 @@ img {
     99% { transform:translateY(-3%); }
     100% { transform:translateY(0); }
 }
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1390px) {
     .card {
       min-height: 100px;
 }

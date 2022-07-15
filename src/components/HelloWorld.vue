@@ -85,7 +85,7 @@ img {
 }
 
 .weather-info {
-  height: 300px;
+  height: auto;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -94,21 +94,21 @@ img {
   align-content: center;
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1390px) {
   h1 {
     color: white;
-    font-size: 60px;
+    font-size: 2rem;
     font-family: 'Prompt', sans-serif;
   }
 
   h2 {
     color: white;
-    font-size: 45px;
+    font-size: 1rem;
     font-family: 'Prompt', sans-serif;
   }
 
   img {
-    max-width: 400px;
+    /* max-width: 400px; */
   }
 
   .container {
@@ -121,7 +121,7 @@ img {
   }
 
   .weather-info {
-    height: 600px;
+    height: auto;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
