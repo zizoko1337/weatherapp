@@ -18,6 +18,11 @@
         :wind="wind"
         :icon="icon"
       />
+      <ErrorInfo
+        v-else-if="error"
+        :error-message="errorMessage"
+        :error-code="errorCode"
+      ></ErrorInfo>
       <EmptyCard v-else></EmptyCard>
     </BaseCard>
   </div>
@@ -27,18 +32,20 @@
 import HelloWorld from './components/HelloWorld.vue';
 import BaseCard from '../src/components/ui/BaseCard.vue';
 import EmptyCard from '../src/components/ui/EmptyCard.vue';
+import ErrorInfo from '../src/components/ErrorInfo.vue';
 import SearchBar from './components/SearchBar.vue';
 import axios from 'axios';
 
 export default {
   name: 'App',
-  emits: ['isDay'],
   components: {
     HelloWorld,
     BaseCard,
     EmptyCard,
+    ErrorInfo,
     SearchBar,
   },
+
   data() {
     return {
       apiFetched: false,
@@ -48,32 +55,43 @@ export default {
       humidity: null,
       description: null,
       wind: null,
-      // cant be null, some async problem
+      // icon cant be null, async problem
       icon: '01n',
+      error: false,
+      errorMessage: null,
+      errorCode: null,
     };
   },
 
   methods: {
-    getWeather(location){
+    getWeather(location) {
       axios
-      .get(
-        'https://api.openweathermap.org/data/2.5/weather?q=' + location + '&units=metric&appid=d0ae4343608e7677c30d02fce0a67936'
-      )
-      .then((response) => {
-        this.location = location;
-        this.temperature = response.data.main.temp;
-        this.humidity = response.data.main.humidity;
-        this.description = response.data.weather[0].description;
-        this.wind = response.data.wind.speed;
-        this.icon = response.data.weather[0].icon;
-        this.dayNight = this.icon.at(-1) == 'd' ? 'day' : 'night';
-        this.apiFetched = true;
-      }).catch((error) => {
-        console.log(error.message);
-      });
-    }
+        .get(
+          // getting data form API key
+          'https://api.openweathermap.org/data/2.5/weather?q=' +
+            location +
+            '&units=metric&appid=d0ae4343608e7677c30d02fce0a67936'
+        )
+        .then((response) => {
+          // allocation of data to proper variables
+          this.location = location;
+          this.temperature = response.data.main.temp;
+          this.humidity = response.data.main.humidity;
+          this.description = response.data.weather[0].description;
+          this.wind = response.data.wind.speed;
+          this.icon = response.data.weather[0].icon;
+          this.dayNight = this.icon.at(-1) == 'd' ? 'day' : 'night';
+          this.apiFetched = true;
+        })
+        .catch((error) => {
+          this.apiFetched = false;
+          // error handling
+          this.error = true;
+          this.errorMessage = error.message;
+          this.errorCode = error.code.toString();
+        });
+    },
   },
-
 };
 </script>
 
@@ -97,6 +115,7 @@ body {
   width: 100%;
   height: 100%;
 }
+
 .night {
   background-image: url('../src/assets/NightHorizontal.png');
   background-repeat: no-repeat;
@@ -119,6 +138,7 @@ body {
     margin-top: 60px;
   }
 }
+
 @media only screen and (max-width: 1390px) {
   .night {
     background-image: url('../src/assets/NightVertical.png');
@@ -127,5 +147,4 @@ body {
     background-image: url('../src/assets/DayVertical.png');
   }
 }
-
 </style>

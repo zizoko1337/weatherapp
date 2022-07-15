@@ -1,16 +1,19 @@
 <template>
   <form @submit.prevent="submitPlace">
-    <input type="submit_on_enter" placeholder="🔎 Search location" v-model="location"/>
+    <input
+      type="submit_on_enter"
+      placeholder="🔎 Search location"
+      v-model="location"
+    />
   </form>
 </template>
 
 <script>
 export default {
-
-  data(){
+  data() {
     return {
       location: null,
-    }
+    };
   },
 
   methods: {
@@ -32,5 +35,11 @@ input {
   font-size: 2rem;
   background-color: rgba(255, 255, 255, 0.192);
   text-align: center;
+}
+
+@media only screen and (max-width: 1390px) {
+  input {
+    font-size: 1rem;
+  }
 }
 </style>
