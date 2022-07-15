@@ -17,7 +17,8 @@ Thats why this component will be imported in main.js, so i can access it anywher
   padding: 1rem;
   margin: 2rem auto;
   max-width: 60%;
-  background: rgba(255, 255, 255, 0.208);
+  background: rgba(0, 0, 0, 0.485);
+  padding-bottom: 50px;
 }
 
 @media only screen and (max-width: 1000px) {
