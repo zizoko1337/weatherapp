@@ -1,5 +1,4 @@
 <template>
-
   <div class="hello">
     <base-card
       ><h1>Weather in {{ msg }}</h1></base-card
@@ -10,7 +9,6 @@
       <h2>{{ description }}</h2>
       <img :src="require('../assets/icons/' + icon + '.png')" alt="" />
     </div>
-
     <div class="weather-info">
       <h2>Temp: {{ temperature }}°</h2>
       <h2>Humidity: {{ humidity }}%</h2>
@@ -20,55 +18,43 @@
 </template>
 
 <script>
-import axios from 'axios';
 import BaseCard from '../components/ui/BaseCard.vue';
 
 export default {
   name: 'HelloWorld',
+
   components: BaseCard,
-  props: {
-    msg: String,
-    location: String,
-  },
-
-  data() {
-    return {
-      temperature: null,
-      humidity: null,
-      description: null,
-      wind: null,
-      // cant be null, some async problem
-      icon: '01d',
-    };
-  },
-
-  beforeMount() {
-    axios
-      .get(
-        'https://api.openweathermap.org/data/2.5/weather?q=warsaw&units=metric&appid=d0ae4343608e7677c30d02fce0a67936'
-      )
-      .then((response) => {
-        this.temperature = response.data.main.temp;
-        this.humidity = response.data.main.humidity;
-        this.description = response.data.weather[0].description;
-        this.wind = response.data.wind.speed;
-        this.icon = response.data.weather[0].icon;
-      });
-  },
+  props: [
+    'msg',
+    'location',
+    'temperature',
+    'humidity',
+    'description',
+    'wind',
+    'icon',
+  ],
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1{
+h1 {
   color: white;
   font-size: 40px;
   font-family: 'Prompt', sans-serif;
+  transition: 1s;
 }
-h2{
+h1:hover {
+  transform: scale(1.2);
+}
+h2 {
   color: white;
   font-size: 31px;
   font-family: 'Prompt', sans-serif;
+  transition: 1s;
+}
+h2:hover {
+  transform: scale(1.2);
 }
 
 ul {
@@ -86,6 +72,8 @@ h2 {
 }
 img {
   max-width: 200px;
+  -webkit-animation: breathing 5s ease-out infinite normal;
+  animation: breathing 5s ease-out infinite normal;
 }
 .container {
   display: flex;
@@ -97,33 +85,7 @@ img {
 }
 
 .weather-info {
-height: 300px;
-display: flex;
-flex-direction: column;
-flex-wrap: wrap;
-justify-content: space-around;
-align-items: center;
-align-content: center;
-}
-
-@media only screen and (max-width: 1000px) {
-
-  h1{
-  color: white;
-  font-size: 60px;
-  font-family: 'Prompt', sans-serif;
-}
-h2{
-  color: white;
-  font-size: 45px;
-  font-family: 'Prompt', sans-serif;
-}
-
-img {
-  max-width: 400px;
-}
-
-    .container {
+  height: 300px;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -132,16 +94,88 @@ img {
   align-content: center;
 }
 
-.weather-info {
-height: 600px;
-display: flex;
-flex-direction: column;
-flex-wrap: wrap;
-justify-content: space-around;
-align-items: center;
-align-content: center;
-}
+@media only screen and (max-width: 1000px) {
+  h1 {
+    color: white;
+    font-size: 60px;
+    font-family: 'Prompt', sans-serif;
+  }
+
+  h2 {
+    color: white;
+    font-size: 45px;
+    font-family: 'Prompt', sans-serif;
+  }
+
+  img {
+    max-width: 400px;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+  }
+
+  .weather-info {
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+  }
 }
 
+@-webkit-keyframes breathing {
+  0% {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+  }
 
+  25% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+
+  60% {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+
+  100% {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+}
+
+@keyframes breathing {
+  0% {
+    -webkit-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+
+  25% {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+  }
+
+  60% {
+    -webkit-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+
+  100% {
+    -webkit-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+}
 </style>

@@ -5,11 +5,20 @@
     href="https://fonts.googleapis.com/css2?family=Prompt:wght@100&display=swap"
     rel="stylesheet"
   />
-  <div id="main"  :class="dayNight">
+  <div id="main" :class="dayNight">
     <img id="logo" alt="Vue logo" src="./assets/logo.png" />
     <BaseCard>
-      <SearchBar></SearchBar>
-      <HelloWorld  msg="Warsaw" @isDay="calcDay(icon)" location="warsaw" />
+      <SearchBar @update-location="getWeather"></SearchBar>
+      <HelloWorld
+        v-if="apiFetched"
+        :msg="location"
+        :temperature="temperature"
+        :humidity="humidity"
+        :description="description"
+        :wind="wind"
+        :icon="icon"
+      />
+      <EmptyCard v-else></EmptyCard>
     </BaseCard>
   </div>
 </template>
@@ -17,7 +26,9 @@
 <script>
 import HelloWorld from './components/HelloWorld.vue';
 import BaseCard from '../src/components/ui/BaseCard.vue';
+import EmptyCard from '../src/components/ui/EmptyCard.vue';
 import SearchBar from './components/SearchBar.vue';
+import axios from 'axios';
 
 export default {
   name: 'App',
@@ -25,32 +36,49 @@ export default {
   components: {
     HelloWorld,
     BaseCard,
+    EmptyCard,
     SearchBar,
   },
   data() {
     return {
-      dayNight: null,
-    }
+      apiFetched: false,
+      location: null,
+      dayNight: 'day',
+      temperature: null,
+      humidity: null,
+      description: null,
+      wind: null,
+      // cant be null, some async problem
+      icon: '01n',
+    };
   },
-  
-  methods:{
-    async calcDay(icon){
-      this.dayNight = icon.at(-1) == 'd' ? 'day' : 'night';
-      console.log(icon.at(-1));
+
+  methods: {
+    getWeather(location){
+      axios
+      .get(
+        'https://api.openweathermap.org/data/2.5/weather?q=' + location + '&units=metric&appid=d0ae4343608e7677c30d02fce0a67936'
+      )
+      .then((response) => {
+        this.location = location;
+        this.temperature = response.data.main.temp;
+        this.humidity = response.data.main.humidity;
+        this.description = response.data.weather[0].description;
+        this.wind = response.data.wind.speed;
+        this.icon = response.data.weather[0].icon;
+        this.dayNight = this.icon.at(-1) == 'd' ? 'day' : 'night';
+        this.apiFetched = true;
+      });
     }
   },
 
-  mounted(){
-    console.log('mounted ' +this.isNight);
-    this.dayNight = (new Date().getHours() < 19 && new Date().getHours() > 6) ? 'day' : 'night';
-  }
 };
 </script>
 
 <style>
 body {
   margin: 0;
-  background-color: black;
+  background-color: #9955ffff;
 }
 
 #app {
@@ -61,15 +89,15 @@ body {
   color: #2c3e50;
 }
 .night {
-  background-image: url('../src/assets/night1.jpg');
+  background-image: url('../src/assets/NightHorizontal.png');
   background-repeat: no-repeat;
   background-size: 100%;
   padding-top: 60px;
   padding-bottom: 350px;
 }
 
-.day{
-  background-image: url('../src/assets/day.jpg');
+.day {
+  background-image: url('../src/assets/DayHorizontal.png');
   background-repeat: no-repeat;
   background-size: 100%;
   padding-top: 60px;
@@ -84,16 +112,11 @@ body {
 }
 @media only screen and (max-width: 1390px) {
   .night {
-    background-image: url('../src/assets/night.jpg');
+    background-image: url('../src/assets/NightVertical.png');
   }
   .day {
-    background-image: url('../src/assets/day1.jpg');
+    background-image: url('../src/assets/DayVertical.png');
   }
 }
-@media only screen and (max-width: 984px) {
-  .night {
-    background-size: auto;
-  }
-  
-}
+
 </style>
