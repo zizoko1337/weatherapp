@@ -2,6 +2,8 @@
 
 <h2>A simple weather app. Just write location, press enter and see the weather ifo</h2>
 
+Check the weather here: https://zizoko1337.github.io/weatherapp/
+
 ![Przechwytywanie](https://user-images.githubusercontent.com/95056942/179359660-5f73bda7-f96e-483f-aa84-fded7a4fd32c.JPG)
 
 <h2>Technologies and resources</h2>
