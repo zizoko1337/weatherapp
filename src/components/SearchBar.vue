@@ -37,6 +37,10 @@ input {
   text-align: center;
 }
 
+input::placeholder{
+  color: white;
+}
+
 @media only screen and (max-width: 1390px) {
   input {
     font-size: 1rem;
