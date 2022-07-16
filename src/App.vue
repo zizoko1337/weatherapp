@@ -9,7 +9,7 @@
     <img id="logo" alt="Vue logo" src="./assets/logo.png" />
     <BaseCard>
       <SearchBar @update-location="getWeather"></SearchBar>
-      <HelloWorld
+      <WeatherDisplay
         v-if="apiFetched"
         :msg="location"
         :temperature="temperature"
@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
+import WeatherDisplay from './components/WeatherDisplay.vue';
 import BaseCard from '../src/components/ui/BaseCard.vue';
 import EmptyCard from '../src/components/ui/EmptyCard.vue';
 import ErrorInfo from '../src/components/ErrorInfo.vue';
@@ -39,7 +39,7 @@ import axios from 'axios';
 export default {
   name: 'App',
   components: {
-    HelloWorld,
+    WeatherDisplay,
     BaseCard,
     EmptyCard,
     ErrorInfo,
