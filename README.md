@@ -1,10 +1,17 @@
 ![logo](https://user-images.githubusercontent.com/95056942/179358966-32041484-194b-4434-8c21-422c57248271.png)
 
-<h2>A simple weather app. Just write location, press enter and see te weather ifo</h2>
-![image](https://user-images.githubusercontent.com/95056942/179359211-7795cb8c-f0f5-4e48-a806-9bc8d61e306f.png)
+<h2>A simple weather app. Just write location, press enter and see the weather ifo</h2>
 
+![Przechwytywanie](https://user-images.githubusercontent.com/95056942/179359660-5f73bda7-f96e-483f-aa84-fded7a4fd32c.JPG)
 
-Overview — Why did you start this project?
-Features — What are some key things your project can do?
-Running the project — How could someone else get your code working for them?
-Dependencies — What are the main outside resources your project needs to run?
+<h2>Technologies and resources</h2>
+<ul>
+  <li>Vue.js</li>
+  <li>JavaScript/li>
+  <li>CSS3</li>
+  <li>axios library for getting data</li>
+  <li>https://openweathermap.org/ (API)</li>
+  <li>https://www.flaticon.com/packs/weather-199?word=weather (Icons)</li>
+  <li>Inkscape for background graphics (made them myself)</li>
+</ul>
+
