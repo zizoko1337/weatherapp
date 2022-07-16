@@ -1,6 +1,6 @@
 ![logo](https://user-images.githubusercontent.com/95056942/179358966-32041484-194b-4434-8c21-422c57248271.png)
 
-<h2>A simple weather app. Just write location, press enter and see the weather ifo</h2>
+<h2>A simple weather app. Just write location, press enter and see the weather info</h2>
 
 Check the weather here: https://zizoko1337.github.io/weatherapp/
 
