@@ -16,4 +16,4 @@ Check the weather here: https://zizoko1337.github.io/weatherapp/
   <li>https://www.flaticon.com/packs/weather-199?word=weather (Icons)</li>
   <li>Inkscape for background graphics (made them myself)</li>
 </ul>
-
+ 
