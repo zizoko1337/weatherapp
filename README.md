@@ -17,3 +17,4 @@ Check the weather here: https://zizoko1337.github.io/weatherapp/
   <li>Inkscape for background graphics (made them myself)</li>
 </ul>
  
+ 
