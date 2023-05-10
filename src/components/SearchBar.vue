@@ -1,4 +1,5 @@
 <template>
+<div data-ikol-contact data-display-mode="list"></div>
   <form @submit.prevent="submitPlace">
     <input
       type="submit_on_enter"
